@@ -4,13 +4,13 @@
   "description": "<b>Context:</b> This API definition is part of the Smart Contracts for Media CD. <br><b>Scope:</b> The API permits to obtain Media Contractual Objects that reference MPEG-21 CEL/MCO contracts <br>The API should be offered an MPEG21 Smart Contract for Media transformer implementation. <br><b>Authors:</b> Mirko Zichichi and Víctor Rodríguez Doncel. Ontology Engineering Group. Universidad Politécnica de Madrid.",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
+    "first": "npm install",
     "start": "node index.js"
   },
   "keywords": [
     "swagger"
   ],
-  "license": "Unlicense",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "connect": "^3.2.0",
