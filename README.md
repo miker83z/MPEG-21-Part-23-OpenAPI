@@ -2,7 +2,7 @@
 
 **Context:** This API definition is derived from the Smart Contracts for Media CD.
 
-**Scope:** This API permits to obtain Media Contractual Objects that reference MPEG-21 CEL/MCO contracts. The API should be offered an MPEG21 Smart Contract for Media transformer implementation.
+**Scope:** This API permits to obtain Media Contractual Objects that reference MPEG-21 CEL/MCO contracts
 
 **Authors:** Mirko Zichichi and Víctor Rodríguez Doncel. Ontology Engineering Group. Universidad Politécnica de Madrid.
 

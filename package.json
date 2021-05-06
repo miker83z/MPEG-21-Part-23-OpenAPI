@@ -1,7 +1,7 @@
 {
   "name": "mpeg-21-smart-contracts-for-media-api",
-  "version": "0.1.0",
-  "description": "<b>Context:</b> This API definition is part of the Smart Contracts for Media CD. <br><b>Scope:</b> The API permits to obtain Media Contractual Objects that reference MPEG-21 CEL/MCO contracts <br>The API should be offered an MPEG21 Smart Contract for Media transformer implementation. <br><b>Authors:</b> Mirko Zichichi and Víctor Rodríguez Doncel. Ontology Engineering Group. Universidad Politécnica de Madrid.",
+  "version": "1.0.0",
+  "description": "<b>Context:</b> This API definition is derived from the Smart Contracts for Media CD. <br><b>Scope:</b> This API permits to obtain Media Contractual Objects that reference MPEG-21 CEL/MCO contracts <br>The API should be offered an MPEG21 Smart Contract for Media transformer implementation. <br><b>Authors:</b> Mirko Zichichi and Víctor Rodríguez Doncel. Ontology Engineering Group. Universidad Politécnica de Madrid.",
   "main": "index.js",
   "scripts": {
     "first": "npm install",
@@ -13,8 +13,12 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@supercharge/strings": "^1.18.0",
     "connect": "^3.2.0",
+    "ethereum-smart-contracts-for-media": "file:../fantastic-memory",
     "js-yaml": "^3.3.0",
+    "mco-generator": "file:../curly-octo-engine",
+    "mco-parser": "file:../crispy-rotary-phone",
     "oas3-tools": "^2.2.2"
   }
 }
