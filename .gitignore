@@ -1,4 +1,6 @@
 ontologies/
+node_modules/
+nohup.out
 
 # Logs
 logs
