@@ -3,7 +3,12 @@
 var utils = require('../utils/writer.js');
 var Generator = require('../service/GeneratorService');
 
-module.exports.generateCELContract = function generateCELContract (req, res, next, contractIdref) {
+module.exports.generateCELContract = function generateCELContract(
+  req,
+  res,
+  next,
+  contractIdref
+) {
   Generator.generateCELContract(contractIdref)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -13,12 +18,20 @@ module.exports.generateCELContract = function generateCELContract (req, res, nex
     });
 };
 
-module.exports.generateMCOContract = function generateMCOContract (req, res, next, contractIdref) {
+module.exports.generateMCOContract = function generateMCOContract(
+  req,
+  res,
+  next,
+  contractIdref
+) {
   Generator.generateMCOContract(contractIdref)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writePlainText(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      const code = response.code === undefined ? 400 : response.code;
+      delete response.code;
+
+      utils.writeJson(res, response, code);
     });
 };

@@ -31,11 +31,9 @@ paths:
         $ref: '#/components/requestBodies/MCOReq'
       responses:
         '200':
-          description: an contractId reference
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/contractIdref'
+          $ref: '#/components/responses/arrayOfContracts'
+        '400':
+          $ref: '#/components/responses/parserError'
       x-swagger-router-controller: Parser
   /parser/cel:
     post:
@@ -47,11 +45,9 @@ paths:
         $ref: '#/components/requestBodies/CELReq'
       responses:
         '200':
-          description: an contractId reference
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/contractIdref'
+          $ref: '#/components/responses/arrayOfContracts'
+        '400':
+          $ref: '#/components/responses/parserError'
       x-swagger-router-controller: Parser
   /generator/mco/{contractIdref}:
     get:
@@ -60,22 +56,12 @@ paths:
       summary: Generates a MCO contract from a set of Media Contractual Objects
       operationId: generateMCOContract
       parameters:
-        - name: contractIdref
-          in: path
-          description: Alphanumeric ID of the contract to get
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: '#/components/schemas/contractIdref'
+        - $ref: '#/components/parameters/contractIdref'
       responses:
         '200':
-          description: a MCO contract
-          content:
-            text/plain:
-              schema:
-                type: string
-                x-content-type: text/plain
+          $ref: '#/components/responses/mcoContract'
+        '400':
+          $ref: '#/components/responses/idError'
       x-swagger-router-controller: Generator
   /generator/cel/{contractIdref}:
     get:
@@ -84,22 +70,12 @@ paths:
       summary: Generates a CEL contract from a set of Media Contractual Objects
       operationId: generateCELContract
       parameters:
-        - name: contractIdref
-          in: path
-          description: Alphanumeric ID of the contract to get
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: '#/components/schemas/contractIdref'
+        - $ref: '#/components/parameters/contractIdref'
       responses:
         '200':
-          description: a CEL contract
-          content:
-            application/xml:
-              schema:
-                type: string
-                x-content-type: application/xml
+          $ref: '#/components/responses/celContract'
+        '400':
+          $ref: '#/components/responses/idError'
       x-swagger-router-controller: Generator
   /eth/parse/:
     post:
@@ -113,11 +89,9 @@ paths:
         $ref: '#/components/requestBodies/EthereumAddress'
       responses:
         '200':
-          description: an contractId reference
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/contractIdref'
+          $ref: '#/components/responses/contract'
+        '400':
+          $ref: '#/components/responses/invalidEthereumAddress'
       x-swagger-router-controller: EthereumSmartContract
   /eth/generate/{contractIdref}:
     get:
@@ -128,14 +102,7 @@ paths:
         Objects
       operationId: generateSmartContract
       parameters:
-        - name: contractIdref
-          in: path
-          description: Alphanumeric ID of the contract to get
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: '#/components/schemas/contractIdref'
+        - $ref: '#/components/parameters/contractIdref'
       responses:
         '200':
           description: a smart contract for media reference
@@ -178,13 +145,7 @@ paths:
         $ref: '#/components/requestBodies/contract'
       responses:
         '200':
-          description: an contractId reference
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/contractIdref'
-        '400':
-          description: id reference not found
+          $ref: '#/components/responses/contractIdref'
       x-swagger-router-controller: MediaContractualObjectsContract
   /contracts/{contractIdref}:
     get:
@@ -193,23 +154,12 @@ paths:
       summary: Returns all the data of a contract object
       operationId: getContract
       parameters:
-        - name: contractIdref
-          in: path
-          description: Alphanumeric ID of the contract to get
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: '#/components/schemas/contractIdref'
+        - $ref: '#/components/parameters/contractIdref'
       responses:
         '200':
-          description: a contract object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Contract'
+          $ref: '#/components/responses/contract'
         '400':
-          description: id reference not found
+          $ref: '#/components/responses/idError'
       x-swagger-router-controller: MediaContractualObjectsContract
   /contracts/{contractIdref}/parties/:
     get:
@@ -2212,8 +2162,31 @@ components:
         - $ref: '#/components/schemas/UserTimeAccess'
         - $ref: '#/components/schemas/UserDefinedFact'
   responses:
+    parserError:
+      description: parser error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errorType:
+                type: string
+    invalidEthereumAddress:
+      description: invalid Ethereum address
+      content:
+        text/plain:
+          schema:
+            type: string
+            x-content-type: text/plain
     idError:
       description: id reference not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errorType:
+                type: string
     mcoContract:
       description: a MCO contract
       content:
@@ -2221,6 +2194,9 @@ components:
           schema:
             type: string
             x-content-type: text/plain
+          examples:
+            turtleExample:
+              $ref: '#/components/examples/turtleExample'
     celContract:
       description: a CEL contract
       content:
@@ -2250,9 +2226,12 @@ components:
     contractIdref:
       description: an contractId reference
       content:
-        text/plain:
+        application/json:
           schema:
-            $ref: '#/components/schemas/contractIdref'
+            type: object
+            properties:
+              contractIdref:
+                $ref: '#/components/schemas/contractIdref'
     personUserIdref:
       description: an personUserId reference
       content:
@@ -2337,6 +2316,17 @@ components:
         text/plain:
           schema:
             $ref: '#/components/schemas/idref'
+    arrayOfContracts:
+      description: an array of contracts objects
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              contracts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contract'
     contract:
       description: a contract object
       content:
@@ -2594,6 +2584,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Contract'
+          examples:
+            contractObjExample:
+              $ref: '#/components/examples/contractObjExample'
     party:
       description: a party object
       content:
@@ -2751,5 +2744,8 @@ components:
               - $ref: '#/components/schemas/UserDefinedFact'
   examples:
     turtleExample:
-      externalValue: 'https://ipfs.io/ipfs/QmQ9WGs2L6hzZxgCkkQntGC3DD6pDWGs1YdVqQNpfUcCCP'
+      externalValue: 'https://scm.linkeddata.es/examples/use-case-stream-small-label.txt'
       summary: A turtle MCO contract
+    contractObjExample:
+      externalValue: 'https://scm.linkeddata.es/examples/contractual-object.json'
+      summary: A Contract Media Contractual Object

@@ -14,7 +14,7 @@ exports.getContract = function (contractIdref) {
     if (contracts[contractIdref] !== undefined) {
       resolve(contracts[contractIdref]);
     } else {
-      resolve();
+      reject({ errorType: 'Id not found' });
     }
   });
 };
@@ -30,6 +30,6 @@ exports.setContract = function (body) {
     const random = 'cont-' + Str.random(22);
     body.idRef = random;
     contracts[random] = body;
-    resolve(random);
+    resolve({ contractIdref: random });
   });
 };

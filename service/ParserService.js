@@ -30,11 +30,10 @@ exports.getContractFromMCO = function (body) {
   return new Promise(function (resolve, reject) {
     try {
       const res = parser.getContractFromMCO(body);
-      console.log(res);
       resolve(res);
     } catch (error) {
-      console.log(error);
-      reject();
+      console.log(error.name);
+      reject({ errorType: error.name });
     }
   });
 };
