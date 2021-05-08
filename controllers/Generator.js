@@ -31,7 +31,6 @@ module.exports.generateMCOContract = function generateMCOContract(
     .catch(function (response) {
       const code = response.code === undefined ? 400 : response.code;
       delete response.code;
-
       utils.writeJson(res, response, code);
     });
 };

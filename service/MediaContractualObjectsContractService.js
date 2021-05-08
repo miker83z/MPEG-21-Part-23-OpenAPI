@@ -12,7 +12,8 @@ const contracts = {};
 exports.getContract = function (contractIdref) {
   return new Promise(function (resolve, reject) {
     if (contracts[contractIdref] !== undefined) {
-      resolve(contracts[contractIdref]);
+      const res = JSON.parse(JSON.stringify(contracts[contractIdref]));
+      resolve(res);
     } else {
       reject({ errorType: 'Id not found' });
     }

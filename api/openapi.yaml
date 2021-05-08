@@ -105,35 +105,9 @@ paths:
         - $ref: '#/components/parameters/contractIdref'
       responses:
         '200':
-          description: a smart contract for media reference
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/scmIdref'
-      x-swagger-router-controller: EthereumSmartContract
-  /eth/deploy/{scmIdref}:
-    get:
-      tags:
-        - Ethereum Smart Contract
-      summary: Deploys a generated Smart Contract for Media
-      operationId: deploySmartContract
-      parameters:
-        - name: scmIdref
-          in: path
-          description: Alphanumeric ID of the smart contract for media
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: '#/components/schemas/scmIdref'
-      responses:
-        '200':
-          description: an Ethereum address
-          content:
-            text/plain:
-              schema:
-                type: string
-                x-content-type: text/plain
+          $ref: '#/components/responses/mediaSmartContract'
+        '400':
+          $ref: '#/components/responses/idError'
       x-swagger-router-controller: EthereumSmartContract
   /contracts/:
     post:
@@ -164,7 +138,7 @@ paths:
   /contracts/{contractIdref}/parties/:
     get:
       tags:
-        - Media Contractual Objects | Party
+        - (Not working) Media Contractual Objects | Party
       summary: Returns the ids of parties of a contract object
       operationId: getParties
       parameters:
@@ -191,7 +165,7 @@ paths:
       x-swagger-router-controller: MediaContractualObjectsParty
     post:
       tags:
-        - Media Contractual Objects | Party
+        - (Not working) Media Contractual Objects | Party
       summary: Create a party of a contract object
       operationId: setParties
       parameters:
@@ -214,7 +188,7 @@ paths:
   /contracts/{contractIdref}/parties/{partyIdref}:
     get:
       tags:
-        - Media Contractual Objects | Party
+        - (Not working) Media Contractual Objects | Party
       summary: Returns all the data of a party object
       operationId: getPartyBy
       parameters:
@@ -247,7 +221,7 @@ paths:
   /contracts/{contractIdref}/otherPersonUsers/:
     get:
       tags:
-        - Media Contractual Objects | Party
+        - (Not working) Media Contractual Objects | Party
       summary: Returns the ids of otherPersonUsers of a contract object
       operationId: getOtherPersonUsers
       parameters:
@@ -274,7 +248,7 @@ paths:
       x-swagger-router-controller: MediaContractualObjectsParty
     post:
       tags:
-        - Media Contractual Objects | Party
+        - (Not working) Media Contractual Objects | Party
       summary: Creates an otherPersonUsers of a contract object
       operationId: setOtherPersonUsers
       parameters:
@@ -297,7 +271,7 @@ paths:
   /contracts/{contractIdref}/otherPersonUsers/{personUserIdref}:
     get:
       tags:
-        - Media Contractual Objects | Party
+        - (Not working) Media Contractual Objects | Party
       summary: Returns all the data of a personUser object
       operationId: getOtherPersonUsersBy
       parameters:
@@ -330,7 +304,7 @@ paths:
   /contracts/{contractIdref}/deontics/:
     get:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Returns the ids of deontic expressions of a contract object
       operationId: getDeontics
       parameters:
@@ -357,7 +331,7 @@ paths:
       x-swagger-router-controller: MediaContractualObjectsDeontic
     post:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Creates a deontic expressions of a contract object
       operationId: setDeontics
       parameters:
@@ -380,7 +354,7 @@ paths:
   /contracts/{contractIdref}/deontics/{deonticIdref}:
     get:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Returns all the data of a deontic object
       operationId: getDeonticBy
       parameters:
@@ -413,7 +387,7 @@ paths:
   /contracts/{contractIdref}/deontics/{deonticIdref}/conditions/:
     get:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Returns the ids of conditions of a deontic object
       operationId: getPrePostConditions
       parameters:
@@ -448,7 +422,7 @@ paths:
       x-swagger-router-controller: MediaContractualObjectsDeontic
     post:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Creates a condition of a deontic object
       operationId: setPrePostConditions
       parameters:
@@ -479,7 +453,7 @@ paths:
   ? /contracts/{contractIdref}/deontics/{deonticIdref}/conditions/{conditionIdref}
   : get:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Returns all the data of a cel condition object
       operationId: getPrePostCondition
       parameters:
@@ -520,7 +494,7 @@ paths:
   /contracts/{contractIdref}/operativePart/:
     get:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Returns the ids of deontic structured blocks of a contract object
       operationId: getOperativePart
       parameters:
@@ -547,7 +521,7 @@ paths:
       x-swagger-router-controller: MediaContractualObjectsDeontic
     post:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Creates a deontic structured block of a contract object
       operationId: setOperativePart
       parameters:
@@ -576,7 +550,7 @@ paths:
   /contracts/{contractIdref}/operativePart/{deonticStructuredBlockIdref}:
     get:
       tags:
-        - Media Contractual Objects | Deontic
+        - (Not working) Media Contractual Objects | Deontic
       summary: Returns the ids of deontics of a deontic structured block object
       operationId: getDeonticStructuredBlock
       parameters:
@@ -612,7 +586,7 @@ paths:
   /contracts/{contractIdref}/actions/:
     get:
       tags:
-        - Media Contractual Objects | Action
+        - (Not working) Media Contractual Objects | Action
       summary: Returns the ids of actions of a contract object
       operationId: getActions
       parameters:
@@ -639,7 +613,7 @@ paths:
       x-swagger-router-controller: MediaContractualObjectsAction
     post:
       tags:
-        - Media Contractual Objects | Action
+        - (Not working) Media Contractual Objects | Action
       summary: Creates an action of a contract object
       operationId: setActions
       parameters:
@@ -662,7 +636,7 @@ paths:
   /contracts/{contractIdref}/actions/{actionIdref}:
     get:
       tags:
-        - Media Contractual Objects | Action
+        - (Not working) Media Contractual Objects | Action
       summary: Returns all the data of an action object
       operationId: getActionBy
       parameters:
@@ -695,7 +669,7 @@ paths:
   /contracts/{contractIdref}/objects/:
     get:
       tags:
-        - Media Contractual Objects | Object
+        - (Not working) Media Contractual Objects | Object
       summary: Returns the ids of objects of a contract object
       operationId: getObject
       parameters:
@@ -722,7 +696,7 @@ paths:
       x-swagger-router-controller: MediaContractualObjectsObject
     post:
       tags:
-        - Media Contractual Objects | Object
+        - (Not working) Media Contractual Objects | Object
       summary: Creates an object of a contract object
       operationId: setObject
       parameters:
@@ -745,7 +719,7 @@ paths:
   /contracts/{contractIdref}/objects/{objectIdref}:
     get:
       tags:
-        - Media Contractual Objects | Object
+        - (Not working) Media Contractual Objects | Object
       summary: Returns all the data of an object object
       operationId: getObjectBy
       parameters:
@@ -778,7 +752,7 @@ paths:
   /contracts/{contractIdref}/facts/:
     get:
       tags:
-        - Media Contractual Objects | Fact
+        - (Not working) Media Contractual Objects | Fact
       summary: Returns the ids of facts of a contract object
       operationId: getFacts
       parameters:
@@ -805,7 +779,7 @@ paths:
       x-swagger-router-controller: MediaContractualObjectsFact
     post:
       tags:
-        - Media Contractual Objects | Fact
+        - (Not working) Media Contractual Objects | Fact
       summary: Create a fact of a contract object
       operationId: setFacts
       parameters:
@@ -828,7 +802,7 @@ paths:
   /contracts/{contractIdref}/facts/{factIdref}:
     get:
       tags:
-        - Media Contractual Objects | Fact
+        - (Not working) Media Contractual Objects | Fact
       summary: Returns all the data of a fact object
       operationId: getFactBy
       parameters:
@@ -2196,7 +2170,7 @@ components:
             x-content-type: text/plain
           examples:
             turtleExample:
-              $ref: '#/components/examples/turtleExample'
+              $ref: 'https://scm.linkeddata.es/examples/examples.yaml#/turtleExample'
     celContract:
       description: a CEL contract
       content:
@@ -2316,6 +2290,12 @@ components:
         text/plain:
           schema:
             $ref: '#/components/schemas/idref'
+    mediaSmartContract:
+      description: an object containing smart contract data
+      content:
+        application/json:
+          schema:
+            type: object
     arrayOfContracts:
       description: an array of contracts objects
       content:
@@ -2567,7 +2547,7 @@ components:
             type: string
           examples:
             turtleExample:
-              $ref: '#/components/examples/turtleExample'
+              $ref: 'https://scm.linkeddata.es/examples/examples.yaml#/turtleExample'
     CELReq:
       content:
         application/xml:
@@ -2578,6 +2558,9 @@ components:
         text/plain:
           schema:
             type: string
+          examples:
+            addressExample:
+              $ref: 'https://scm.linkeddata.es/examples/examples.yaml#/smartContractAddressExample'
     contract:
       description: a contract object
       content:
@@ -2586,7 +2569,7 @@ components:
             $ref: '#/components/schemas/Contract'
           examples:
             contractObjExample:
-              $ref: '#/components/examples/contractObjExample'
+              $ref: 'https://scm.linkeddata.es/examples/examples.yaml#/contractObjExample'
     party:
       description: a party object
       content:
@@ -2742,10 +2725,3 @@ components:
               - $ref: '#/components/schemas/TemporalContext'
               - $ref: '#/components/schemas/UserTimeAccess'
               - $ref: '#/components/schemas/UserDefinedFact'
-  examples:
-    turtleExample:
-      externalValue: 'https://scm.linkeddata.es/examples/use-case-stream-small-label.txt'
-      summary: A turtle MCO contract
-    contractObjExample:
-      externalValue: 'https://scm.linkeddata.es/examples/contractual-object.json'
-      summary: A Contract Media Contractual Object

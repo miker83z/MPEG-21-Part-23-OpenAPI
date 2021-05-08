@@ -1,6 +1,7 @@
 ontologies/
 node_modules/
 nohup.out
+.secret.json
 
 # Logs
 logs
