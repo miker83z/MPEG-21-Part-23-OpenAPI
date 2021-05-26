@@ -15,6 +15,7 @@
   "dependencies": {
     "@supercharge/strings": "^1.18.0",
     "connect": "^3.2.0",
+    "cors": "^2.8.5",
     "ethereum-smart-contracts-for-media": "file:../fantastic-memory",
     "js-yaml": "^3.3.0",
     "mco-generator": "file:../curly-octo-engine",
