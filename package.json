@@ -16,9 +16,9 @@
     "@supercharge/strings": "^1.18.0",
     "connect": "^3.2.0",
     "cors": "^2.8.5",
-    "ethereum-smart-contracts-for-media": "file:../fantastic-memory",
+    "scm-manager-generator": "file:../fantastic-memory",
     "js-yaml": "^3.3.0",
-    "mco-generator": "file:../curly-octo-engine",
+    "mco-generator": "file:../MPEG-21-Part-23-MCO-Generator",
     "mco-parser": "file:../crispy-rotary-phone",
     "oas3-tools": "^2.2.2"
   }

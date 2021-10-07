@@ -3,11 +3,13 @@ info:
   title: MPEG-21 Smart Contracts for Media OpenAPI
   description:
     <b>Context:</b> This API definition is derived from the Smart Contracts
-    for Media CD. <br><b>Scope:</b> This API permits to obtain Media Contractual Objects
-    that reference MPEG-21 CEL/MCO contracts <br>The API should be offered an MPEG21
-    Smart Contract for Media transformer implementation. <br><b>Authors:</b> Mirko
-    Zichichi and Víctor Rodríguez Doncel. Ontology Engineering Group. Universidad
-    Politécnica de Madrid.
+    for Media DIS. <br><b>Scope:</b> This part of the standard provides the means
+    (e.g., protocols and application programming interfaces) for converting MPEG-21
+    XML and RDF media contracts (ISO/IEC 21000-19 Media Value Chain Ontology,
+    ISO/IEC 21000-19/AMD1 Extensions on Time-Segments and Multi-Track Audio, also
+    known as Audio Value Chain Ontology, ISO/IEC 21000-20 (2nd Ed) Contract
+    Expression Language and ISO/IEC 21000-21 (2nd Ed) Media Contract Ontology) to
+    smart contracts executable on existing DLT environments.
   contact:
     name: MPEG-21 Smart Contracts for Media
     url: https://scm.linkeddata.es
@@ -109,6 +111,22 @@ paths:
         '400':
           $ref: '#/components/responses/idError'
       x-swagger-router-controller: EthereumSmartContract
+  /algo/parse/:
+    post:
+      tags:
+        - Algorand Smart Contract
+      summary:
+        Parses a Smart Contract for Media from an Algorand address and App id and
+        creates a set of Media Contractual Objects
+      operationId: parseSmartContractAlgo
+      requestBody:
+        $ref: '#/components/requestBodies/AlgorandAddress'
+      responses:
+        '200':
+          $ref: '#/components/responses/contract'
+        '400':
+          $ref: '#/components/responses/invalidAlgorandAddress'
+      x-swagger-router-controller: AlgorandSmartContract
   /contracts/:
     post:
       tags:
@@ -450,8 +468,8 @@ paths:
         '400':
           description: id reference not found
       x-swagger-router-controller: MediaContractualObjectsDeontic
-  ? /contracts/{contractIdref}/deontics/{deonticIdref}/conditions/{conditionIdref}
-  : get:
+  /contracts/{contractIdref}/deontics/{deonticIdref}/conditions/{conditionIdref}:
+    get:
       tags:
         - (Not working) Media Contractual Objects | Deontic
       summary: Returns all the data of a cel condition object
@@ -2152,6 +2170,13 @@ components:
           schema:
             type: string
             x-content-type: text/plain
+    invalidAlgorandAddress:
+      description: invalid Algorand address
+      content:
+        text/plain:
+          schema:
+            type: string
+            x-content-type: text/plain
     idError:
       description: id reference not found
       content:
@@ -2561,6 +2586,20 @@ components:
           examples:
             addressExample:
               $ref: 'https://scm.linkeddata.es/examples/examples.yaml#/smartContractAddressExample'
+    AlgorandAddress:
+      content:
+        text/plain:
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+              appId:
+                minimum: 1
+                type: integer
+              nftAppId:
+                minimum: 1
+                type: integer
     contract:
       description: a contract object
       content:

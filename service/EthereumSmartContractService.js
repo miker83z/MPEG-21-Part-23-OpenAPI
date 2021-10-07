@@ -2,8 +2,8 @@
 const {
   generateMediaSmartContract,
   OffChainStorage,
-  SmartContractParser,
-} = require('ethereum-smart-contracts-for-media');
+  EthereumParser,
+} = require('scm-manager-generator');
 var MediaContractualObjectsContract = require('./MediaContractualObjectsContractService');
 const sec = require('../.secret.json');
 
@@ -41,7 +41,7 @@ exports.parseSmartContract = function (body) {
   return new Promise(async function (resolve, reject) {
     try {
       const ipfs = new OffChainStorage();
-      const pars = new SmartContractParser(
+      const pars = new EthereumParser(
         `https://ropsten.infura.io/v3/${sec.infura}`,
         ipfs,
         body,
