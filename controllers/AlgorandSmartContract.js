@@ -3,6 +3,24 @@
 var utils = require('../utils/writer.js');
 var AlgorandSmartContract = require('../service/AlgorandSmartContractService');
 
+module.exports.deploySmartContractAlgo = function deploySmartContractAlgo(
+  req,
+  res,
+  next,
+  contractIdref
+) {
+  AlgorandSmartContract.deploySmartContractAlgo(contractIdref)
+    .then(function (response) {
+      console.log(response);
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      const code = response.code === undefined ? 400 : response.code;
+      delete response.code;
+      utils.writeJson(res, response, code);
+    });
+};
+
 module.exports.parseSmartContractAlgo = function parseSmartContractAlgo(
   req,
   res,

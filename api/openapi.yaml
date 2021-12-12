@@ -79,10 +79,26 @@ paths:
         '400':
           $ref: '#/components/responses/idError'
       x-swagger-router-controller: Generator
-  /eth/parse/:
+  /dlt/generate/{contractIdref}:
+    get:
+      tags:
+        - DLT and Smart Contract Manager
+      summary:
+        Generates a Smart Contract Specification from a set of Media Contractual
+        Objects
+      operationId: generateSmartContract
+      parameters:
+        - $ref: '#/components/parameters/contractIdref'
+      responses:
+        '200':
+          $ref: '#/components/responses/mediaSmartContract'
+        '400':
+          $ref: '#/components/responses/idError'
+      x-swagger-router-controller: EthereumSmartContract
+  /dlt/eth/parse/:
     post:
       tags:
-        - Ethereum Smart Contract
+        - DLT and Smart Contract Manager
       summary:
         Parses a Smart Contract for Media from an Ethereum address and creates
         a set of Media Contractual Objects
@@ -95,26 +111,24 @@ paths:
         '400':
           $ref: '#/components/responses/invalidEthereumAddress'
       x-swagger-router-controller: EthereumSmartContract
-  /eth/generate/{contractIdref}:
+  /dlt/algo/deploy/:
     get:
       tags:
-        - Ethereum Smart Contract
-      summary:
-        Generates a Smart Contract for Media from a set of Media Contractual
-        Objects
-      operationId: generateSmartContract
-      parameters:
-        - $ref: '#/components/parameters/contractIdref'
+        - DLT and Smart Contract Manager
+      summary: Deploys a Smart Contract for Media from a set of Media Contractual Objects in Algorand
+      operationId: deploySmartContractAlgo
+      requestBody:
+        $ref: '#/components/parameters/contractIdref'
       responses:
         '200':
-          $ref: '#/components/responses/mediaSmartContract'
+          $ref: '#/components/responses/algorandSmartContractAddress'
         '400':
-          $ref: '#/components/responses/idError'
-      x-swagger-router-controller: EthereumSmartContract
-  /algo/parse/:
+          $ref: '#/components/responses/invalidAlgorandAddress'
+      x-swagger-router-controller: AlgorandSmartContract
+  /dlt/algo/parse/:
     post:
       tags:
-        - Algorand Smart Contract
+        - DLT and Smart Contract Manager
       summary:
         Parses a Smart Contract for Media from an Algorand address and App id and
         creates a set of Media Contractual Objects
@@ -2410,6 +2424,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/inline_response_200_5'
+    algorandSmartContractAddress:
+      description: an object containing Algorand smart contract data
+      content:
+        application/json:
+          schema:
+            type: object
   parameters:
     scmIdref:
       name: scmIdref
