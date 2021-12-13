@@ -2,8 +2,8 @@
 const {
   generateSmartContractSpecification,
   OffChainStorage,
-  AlgorandDeployer,
-  AlgorandParser,
+  AlgoDeployer,
+  AlgoParser,
 } = require('scm-manager-generator');
 var MediaContractualObjectsContract = require('./MediaContractualObjectsContractService');
 const bindings = require('../bindings-algo.json');
