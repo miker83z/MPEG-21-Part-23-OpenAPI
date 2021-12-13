@@ -111,20 +111,20 @@ paths:
         '400':
           $ref: '#/components/responses/invalidEthereumAddress'
       x-swagger-router-controller: EthereumSmartContract
-  /dlt/algo/deploy/{contractIdref}:
-    get:
-      tags:
-        - DLT and Smart Contract Manager
-      summary: Deploys a Smart Contract for Media from a set of Media Contractual Objects in Algorand
-      operationId: deploySmartContractAlgo
-      parameters:
-        - $ref: '#/components/parameters/contractIdref'
-      responses:
-        '200':
-          $ref: '#/components/responses/algorandSmartContractAddress'
-        '400':
-          $ref: '#/components/responses/invalidAlgorandAddress'
-      x-swagger-router-controller: AlgorandSmartContract
+  #/dlt/algo/deploy/{contractIdref}:
+  #  get:
+  #    tags:
+  #      - DLT and Smart Contract Manager
+  #    summary: Deploys a Smart Contract for Media from a set of Media Contractual Objects in Algorand
+  #    operationId: deploySmartContractAlgo
+  #    parameters:
+  #      - $ref: '#/components/parameters/contractIdref'
+  #    responses:
+  #      '200':
+  #        $ref: '#/components/responses/algorandSmartContractAddress'
+  #      '400':
+  #        $ref: '#/components/responses/invalidAlgorandAddress'
+  #    x-swagger-router-controller: AlgorandSmartContract
   /dlt/algo/parse/:
     post:
       tags:
