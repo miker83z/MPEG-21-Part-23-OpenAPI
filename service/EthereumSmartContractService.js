@@ -1,6 +1,6 @@
 'use strict';
 const {
-  generateMediaSmartContract,
+  generateSmartContractSpecification,
   OffChainStorage,
   EthereumParser,
 } = require('scm-manager-generator');
@@ -18,7 +18,7 @@ exports.generateSmartContract = function (contractIdref) {
     MediaContractualObjectsContract.getContract(contractIdref)
       .then(function (contract) {
         try {
-          const res = generateMediaSmartContract(contract);
+          const res = generateSmartContractSpecification(contract);
           resolve(res);
         } catch (error) {
           console.log(error);

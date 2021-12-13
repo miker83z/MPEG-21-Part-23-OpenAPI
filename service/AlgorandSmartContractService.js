@@ -1,6 +1,6 @@
 'use strict';
 const {
-  generateMediaSmartContract,
+  generateSmartContractSpecification,
   OffChainStorage,
   AlgorandDeployer,
   AlgorandParser,
@@ -20,7 +20,7 @@ exports.deploySmartContractAlgo = function (contractIdref) {
       const contract = await MediaContractualObjectsContract.getContract(
         contractIdref
       );
-      const specification = generateMediaSmartContract(contract);
+      const specification = generateSmartContractSpecification(contract);
 
       const master = AlgoDeployer.fromMnemonic(
         'enforce drive foster uniform cradle tired win arrow wasp melt cattle chronic sport dinosaur announce shell correct shed amused dismiss mother jazz task above hospital'
