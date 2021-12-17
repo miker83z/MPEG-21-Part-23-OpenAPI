@@ -2608,7 +2608,7 @@ components:
               $ref: 'https://scm.linkeddata.es/examples/examples.yaml#/smartContractAddressExample'
     AlgorandAddress:
       content:
-        text/plain:
+        application/json:
           schema:
             type: object
             properties:
